@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
+import heroImage from "@/assets/hero-blood-donation.jpg";
 import { 
   Heart, 
   Users, 
@@ -18,21 +19,6 @@ import {
 } from "lucide-react";
 
 const Landing = () => {
-  const [currentAd, setCurrentAd] = useState(0);
-
-  const fakeAds = [
-    "https://asthmabhawan.com/wp-content/uploads/2025/06/asthmabhawan.com-world-blood-donor-day-2025-be-someones-lifeline-today-world-blood-donor-day-2025-be-someones-lifeline-today.jpg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCJVwhelmjggkcHDh73C5ShyTVZq4pHchbFw&s",
-    "https://www.shutterstock.com/image-vector/world-blood-donor-day-donate-600nw-1989857141.jpg"
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentAd((prev) => (prev + 1) % fakeAds.length);
-    }, 2000); // change image every 2 sec
-    return () => clearInterval(interval);
-  }, []);
-
   const stats = [
     { number: "500+", label: "Registered Donors", icon: Users },
     { number: "200+", label: "Lives Saved", icon: Heart },
@@ -63,17 +49,38 @@ const Landing = () => {
     }
   ];
 
+  // Fake Ads
+  const fakeAds = [
+    "https://asthmabhawan.com/wp-content/uploads/2025/06/asthmabhawan.com-world-blood-donor-day-2025-be-someones-lifeline-today-world-blood-donor-day-2025-be-someones-lifeline-today.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCJVwhelmjggkcHDh73C5ShyTVZq4pHchbFw&s",
+    "https://image.shutterstock.com/image-vector/world-blood-donor-day-donate-600nw-1989857141.jpg"
+  ];
+
+  const [currentAd, setCurrentAd] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentAd((prev) => (prev + 1) % fakeAds.length);
+    }, 2000); // 2 seconds
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      {/* Fake Google Ads Banner */}
-      <div className="w-full h-48 overflow-hidden relative mb-8 bg-gray-100 flex items-center justify-center rounded-lg shadow-lg">
-        <img 
-          src={fakeAds[currentAd]} 
-          alt="Fake Ads" 
-          className="max-h-full max-w-full object-contain transition-all duration-500"
-        />
+      {/* Fake Ads Banner */}
+      <div className="w-full h-64 md:h-80 lg:h-96 overflow-hidden relative mb-8 rounded-lg shadow-lg">
+        {fakeAds.map((ad, index) => (
+          <img
+            key={index}
+            src={ad}
+            alt="Fake Ads"
+            className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${
+              index === currentAd ? "opacity-100 scale-105 z-10" : "opacity-0 scale-100 z-0"
+            }`}
+          />
+        ))}
         <div className="absolute bottom-2 right-4 bg-black/50 text-white px-2 py-1 rounded text-sm">
           Ads · Sponsored
         </div>
@@ -121,14 +128,13 @@ const Landing = () => {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1588776814546-85e0b2d2c75b?auto=format&fit=crop&w=800&q=80"
+                  src={heroImage}
                   alt="Blood donation heroes saving lives"
                   className="w-full h-[400px] lg:h-[500px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
               </div>
               
-              {/* Floating stats card */}
               <Card className="absolute -bottom-6 -left-6 bg-background shadow-lg">
                 <CardContent className="p-4">
                   <div className="flex items-center space-x-3">
