@@ -34,7 +34,7 @@ import {
   Heart,
   Droplets,
 } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast"; // ✅ import toast
+import { useToast } from "@/components/ui/use-toast";
 
 // ✅ Validation schema with Zod
 const schema = z
@@ -55,24 +55,35 @@ const schema = z
     path: ["confirmPassword"],
   });
 
+// ✅ Helper functions to simulate backend storage
+const USERS_KEY = "redvault_users";
+
+const saveUser = (user: any) => {
+  const users = JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
+  users.push(user);
+  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+};
+
+const findUserByEmail = (email: string) => {
+  const users = JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
+  return users.find((u: any) => u.email === email);
+};
+
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isDonor, setIsDonor] = useState(true);
-  const { toast } = useToast(); // ✅ use toast
+  const { toast } = useToast(); // toast notifications
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
     reset,
   } = useForm({
     resolver: zodResolver(schema),
   });
 
   const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
-
   const cities = [
     "New York, NY",
     "Los Angeles, CA",
@@ -86,16 +97,27 @@ const Register = () => {
     "San Jose, CA",
   ];
 
-  const onSubmit = (data) => {
-    console.log("Form submitted:", data);
+  const onSubmit = (data: any) => {
+    // ❌ Check if email already exists
+    if (findUserByEmail(data.email)) {
+      toast({
+        title: "❌ Registration Failed",
+        description: "Email is already registered!",
+        variant: "destructive",
+      });
+      return;
+    }
 
-    // ✅ show success toast
+    // ✅ Save user
+    saveUser(data);
+
+    // ✅ Show success toast
     toast({
       title: "✅ Account Created",
       description: "Welcome to Red Vault, your account has been created!",
     });
 
-    reset(); // clear form
+    reset();
   };
 
   return (
@@ -124,7 +146,6 @@ const Register = () => {
               </CardHeader>
 
               <CardContent className="space-y-6">
-                {/* --- Inputs stay same as before --- */}
                 {/* Full Name */}
                 <div className="space-y-2">
                   <Label>Full Name *</Label>
@@ -137,9 +158,7 @@ const Register = () => {
                     />
                   </div>
                   {errors.fullName && (
-                    <p className="text-sm text-red-500">
-                      {errors.fullName.message}
-                    </p>
+                    <p className="text-sm text-red-500">{errors.fullName.message}</p>
                   )}
                 </div>
 
@@ -156,9 +175,7 @@ const Register = () => {
                     />
                   </div>
                   {errors.email && (
-                    <p className="text-sm text-red-500">
-                      {errors.email.message}
-                    </p>
+                    <p className="text-sm text-red-500">{errors.email.message}</p>
                   )}
                 </div>
 
@@ -175,9 +192,47 @@ const Register = () => {
                     />
                   </div>
                   {errors.phone && (
-                    <p className="text-sm text-red-500">
-                      {errors.phone.message}
-                    </p>
+                    <p className="text-sm text-red-500">{errors.phone.message}</p>
+                  )}
+                </div>
+
+                {/* Blood Group */}
+                <div className="space-y-2">
+                  <Label>Blood Group *</Label>
+                  <Select {...register("bloodGroup")}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select blood group" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {bloodGroups.map((bg) => (
+                        <SelectItem key={bg} value={bg}>
+                          {bg}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {errors.bloodGroup && (
+                    <p className="text-sm text-red-500">{errors.bloodGroup.message}</p>
+                  )}
+                </div>
+
+                {/* Location */}
+                <div className="space-y-2">
+                  <Label>City *</Label>
+                  <Select {...register("location")}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select city" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {cities.map((city) => (
+                        <SelectItem key={city} value={city}>
+                          {city}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {errors.location && (
+                    <p className="text-sm text-red-500">{errors.location.message}</p>
                   )}
                 </div>
 
@@ -207,9 +262,7 @@ const Register = () => {
                     </Button>
                   </div>
                   {errors.password && (
-                    <p className="text-sm text-red-500">
-                      {errors.password.message}
-                    </p>
+                    <p className="text-sm text-red-500">{errors.password.message}</p>
                   )}
                 </div>
 
@@ -229,9 +282,7 @@ const Register = () => {
                       variant="ghost"
                       size="sm"
                       className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                      onClick={() =>
-                        setShowConfirmPassword(!showConfirmPassword)
-                      }
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     >
                       {showConfirmPassword ? (
                         <EyeOff className="h-4 w-4 text-muted-foreground" />
@@ -241,9 +292,7 @@ const Register = () => {
                     </Button>
                   </div>
                   {errors.confirmPassword && (
-                    <p className="text-sm text-red-500">
-                      {errors.confirmPassword.message}
-                    </p>
+                    <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>
                   )}
                 </div>
 
