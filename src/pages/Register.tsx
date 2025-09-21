@@ -32,7 +32,7 @@ const Register = () => {
             <div className="flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mx-auto mb-4">
               <Heart className="w-8 h-8 text-primary" />
             </div>
-            <h1 className="text-3xl font-bold">Join LifeSaver</h1>
+            <h1 className="text-3xl font-bold">Join Red Vault</h1>
             <p className="text-muted-foreground mt-2">
               Register to become a hero and help save lives in your community
             </p>

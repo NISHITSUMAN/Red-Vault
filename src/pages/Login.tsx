@@ -23,7 +23,7 @@ const Login = () => {
               <Heart className="w-8 h-8 text-primary" />
             </div>
             <h1 className="text-3xl font-bold">Welcome Back</h1>
-            <p className="text-muted-foreground mt-2">Sign in to your LifeSaver account</p>
+            <p className="text-muted-foreground mt-2">Sign in to your Red Vault account</p>
           </div>
 
           <Card>

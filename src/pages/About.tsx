@@ -60,7 +60,7 @@ const About = () => {
             <span className="text-primary block">Blood Donation</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            LifeSaver is dedicated to bridging the gap between blood donors and those in need. 
+            Red Vault is dedicated to bridging the gap between blood donors and those in need. 
             Our platform ensures that no life is lost due to blood shortage.
           </p>
         </div>
@@ -136,7 +136,7 @@ const About = () => {
 
         {/* How It Works */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-12">How LifeSaver Works</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">How Red Vault Works</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="text-center">
               <CardContent className="p-6 space-y-4">

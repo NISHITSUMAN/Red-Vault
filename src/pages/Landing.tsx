@@ -146,7 +146,7 @@ const Landing = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold">Why Choose LifeSaver?</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold">Why Choose Red Vault?</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Advanced technology meets humanitarian mission. Our platform ensures 
               rapid, reliable, and secure blood donation connections.
@@ -207,7 +207,7 @@ const Landing = () => {
                 <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-lg">
                   <Heart className="h-5 w-5 text-primary-foreground" />
                 </div>
-                <span className="text-lg font-bold">LifeSaver</span>
+                <span className="text-lg font-bold">Red Vault</span>
               </div>
               <p className="text-muted-foreground">
                 Connecting blood donors with those in need, one life at a time.
@@ -243,7 +243,7 @@ const Landing = () => {
           </div>
           
           <div className="border-t mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 LifeSaver. All rights reserved. Saving lives together.</p>
+            <p>&copy; 2024 Red Vault. All rights reserved. Saving lives together.</p>
           </div>
         </div>
       </footer>

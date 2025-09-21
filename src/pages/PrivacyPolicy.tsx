@@ -73,8 +73,8 @@ const PrivacyPolicy = () => {
       title: "Contact Information",
       icon: Mail,
       content: [
-        "Data Protection Officer: privacy@lifesaver.com",
-        "General Inquiries: support@lifesaver.com",
+        "Data Protection Officer: privacy@RedVault.com",
+        "General Inquiries: support@RedVault.com",
         "Mailing Address: 123 Healthcare Plaza, Medical District, NY 10001",
         "Phone: +1 (555) 123-LIFE",
         "Response Time: We respond to privacy requests within 30 days",
@@ -110,7 +110,7 @@ const PrivacyPolicy = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <p>
-                At LifeSaver, we understand that your trust is essential when sharing personal and medical 
+                At Red Vault, we understand that your trust is essential when sharing personal and medical 
                 information for life-saving purposes. This Privacy Policy explains how we collect, use, 
                 protect, and share your information when you use our blood donation platform.
               </p>
@@ -120,7 +120,7 @@ const PrivacyPolicy = () => {
               </p>
               <div className="bg-muted/50 p-4 rounded-lg">
                 <p className="text-sm">
-                  <strong>Important:</strong> By using LifeSaver, you consent to the collection and use of 
+                  <strong>Important:</strong> By using Red Vault, you consent to the collection and use of 
                   information as described in this policy. This policy applies to all users, including donors, 
                   recipients, and healthcare professionals.
                 </p>
@@ -186,7 +186,7 @@ const PrivacyPolicy = () => {
             </CardHeader>
             <CardContent>
               <p>
-                LifeSaver is not intended for individuals under the age of 18. We do not knowingly collect 
+                Red Vault is not intended for individuals under the age of 18. We do not knowingly collect 
                 personal information from children under 18. If you are a parent or guardian and believe 
                 your child has provided us with personal information, please contact us immediately.
               </p>
@@ -224,7 +224,7 @@ const PrivacyPolicy = () => {
           {/* Footer */}
           <div className="text-center mt-12 pt-8 border-t">
             <p className="text-muted-foreground">
-              Thank you for trusting LifeSaver with your information. Together, we're saving lives while 
+              Thank you for trusting Red Vault with your information. Together, we're saving lives while 
               protecting your privacy.
             </p>
           </div>

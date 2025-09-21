@@ -159,7 +159,7 @@ const Rewards = () => {
       id: 3,
       name: "Blood Donor T-Shirt",
       cost: 100,
-      description: "Official LifeSaver donor t-shirt",
+      description: "Official Red Vault donor t-shirt",
       available: true
     },
     {

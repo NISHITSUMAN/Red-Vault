@@ -51,7 +51,7 @@ const Navigation = ({ userType = null, notifications = 0 }: NavigationProps) => 
           <div className="flex items-center justify-center w-10 h-10 bg-primary rounded-lg">
             <Droplets className="h-6 w-6 text-primary-foreground" />
           </div>
-          <span className="text-xl font-bold text-foreground">LifeSaver</span>
+          <span className="text-xl font-bold text-foreground">Red Vault</span>
         </Link>
 
         {/* Desktop Navigation */}

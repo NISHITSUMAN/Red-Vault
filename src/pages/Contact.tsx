@@ -31,14 +31,14 @@ const Contact = () => {
       icon: Mail,
       title: "General Support",
       description: "For general inquiries and support",
-      contact: "support@lifesaver.com",
+      contact: "support@Red Vault.com",
       type: "general"
     },
     {
       icon: Shield,
       title: "Medical Team",
       description: "For medical questions and verification",
-      contact: "medical@lifesaver.com",
+      contact: "medical@Red Vault.com",
       type: "medical"
     }
   ];
