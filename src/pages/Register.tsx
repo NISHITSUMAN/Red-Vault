@@ -27,7 +27,6 @@ import {
   User,
   Mail,
   Phone,
-  MapPin,
   Lock,
   Eye,
   EyeOff,
@@ -55,24 +54,25 @@ const schema = z
     path: ["confirmPassword"],
   });
 
-// ✅ Helper functions to simulate backend storage
-const USERS_KEY = "redvault_users";
+const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
-const saveUser = (user: any) => {
-  const users = JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
-  users.push(user);
-  localStorage.setItem(USERS_KEY, JSON.stringify(users));
-};
-
-const findUserByEmail = (email: string) => {
-  const users = JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
-  return users.find((u: any) => u.email === email);
-};
+const cities = [
+  "New York, NY",
+  "Los Angeles, CA",
+  "Chicago, IL",
+  "Houston, TX",
+  "Phoenix, AZ",
+  "Philadelphia, PA",
+  "San Antonio, TX",
+  "San Diego, CA",
+  "Dallas, TX",
+  "San Jose, CA",
+];
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { toast } = useToast(); // toast notifications
+  const { toast } = useToast();
 
   const {
     register,
@@ -83,22 +83,20 @@ const Register = () => {
     resolver: zodResolver(schema),
   });
 
-  const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
-  const cities = [
-    "New York, NY",
-    "Los Angeles, CA",
-    "Chicago, IL",
-    "Houston, TX",
-    "Phoenix, AZ",
-    "Philadelphia, PA",
-    "San Antonio, TX",
-    "San Diego, CA",
-    "Dallas, TX",
-    "San Jose, CA",
-  ];
+  // ✅ Helper to save user
+  const saveUser = (data: any) => {
+    const users = JSON.parse(localStorage.getItem("redvault_users") || "[]");
+    users.push(data);
+    localStorage.setItem("redvault_users", JSON.stringify(users));
+  };
+
+  // ✅ Check email already exists
+  const findUserByEmail = (email: string) => {
+    const users = JSON.parse(localStorage.getItem("redvault_users") || "[]");
+    return users.find((u: any) => u.email === email);
+  };
 
   const onSubmit = (data: any) => {
-    // ❌ Check if email already exists
     if (findUserByEmail(data.email)) {
       toast({
         title: "❌ Registration Failed",
@@ -108,13 +106,12 @@ const Register = () => {
       return;
     }
 
-    // ✅ Save user
     saveUser(data);
 
-    // ✅ Show success toast
     toast({
-      title: "✅ Account Created",
-      description: "Welcome to Red Vault, your account has been created!",
+      title: "🎉 Success!",
+      description: "You have been successfully registered!",
+      variant: "default",
     });
 
     reset();
@@ -218,10 +215,10 @@ const Register = () => {
 
                 {/* Location */}
                 <div className="space-y-2">
-                  <Label>City *</Label>
+                  <Label>Location *</Label>
                   <Select {...register("location")}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select city" />
+                      <SelectValue placeholder="Select your city" />
                     </SelectTrigger>
                     <SelectContent>
                       {cities.map((city) => (
@@ -282,7 +279,9 @@ const Register = () => {
                       variant="ghost"
                       size="sm"
                       className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      onClick={() =>
+                        setShowConfirmPassword(!showConfirmPassword)
+                      }
                     >
                       {showConfirmPassword ? (
                         <EyeOff className="h-4 w-4 text-muted-foreground" />
@@ -292,7 +291,9 @@ const Register = () => {
                     </Button>
                   </div>
                   {errors.confirmPassword && (
-                    <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>
+                    <p className="text-sm text-red-500">
+                      {errors.confirmPassword.message}
+                    </p>
                   )}
                 </div>
 
