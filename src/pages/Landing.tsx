@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -18,6 +19,22 @@ import {
 } from "lucide-react";
 
 const Landing = () => {
+  // Fake Google Ads Images
+  const fakeAds = [
+    "https://asthmabhawan.com/wp-content/uploads/2025/06/asthmabhawan.com-world-blood-donor-day-2025-be-someones-lifeline-today-world-blood-donor-day-2025-be-someones-lifeline-today.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCJVwhelmjggkcHDh73C5ShyTVZq4pHchbFw&s",
+    "https://www.shutterstock.com/image-vector/world-blood-donor-day-donate-600nw-1989857141.jpg"
+  ];
+
+  const [currentAd, setCurrentAd] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentAd((prev) => (prev + 1) % fakeAds.length);
+    }, 2000); // 2 seconds
+    return () => clearInterval(interval);
+  }, []);
+
   const stats = [
     { number: "500+", label: "Registered Donors", icon: Users },
     { number: "200+", label: "Lives Saved", icon: Heart },
@@ -52,6 +69,18 @@ const Landing = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
+      {/* Fake Google Ads Banner */}
+      <div className="w-full h-40 lg:h-48 overflow-hidden relative mb-8">
+        <img 
+          src={fakeAds[currentAd]} 
+          alt="Fake Ads" 
+          className="w-full h-full object-cover rounded-lg shadow-lg transition-all duration-500"
+        />
+        <div className="absolute bottom-2 right-4 bg-black/50 text-white px-2 py-1 rounded text-sm">
+          Ads · Sponsored
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
         <div className="container mx-auto px-4 py-20 lg:py-32">
