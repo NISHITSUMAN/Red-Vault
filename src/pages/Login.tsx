@@ -7,10 +7,43 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Checkbox } from "@/components/ui/checkbox";
 import Navigation from "@/components/Navigation";
 import { Mail, Lock, Eye, EyeOff, Phone, Heart } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
+
+// ✅ import storage helpers
+import { validateUser } from "./storage";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loginType, setLoginType] = useState<'email' | 'phone'>('email');
+  const [inputValue, setInputValue] = useState('');
+  const [password, setPassword] = useState('');
+  const { toast } = useToast();
+
+  const handleLogin = () => {
+    let user = null;
+
+    if (loginType === 'email') {
+      user = validateUser(inputValue, password);
+    } else {
+      // phone login
+      const allUsers = JSON.parse(localStorage.getItem("users") || "[]");
+      user = allUsers.find(u => u.phone === inputValue && u.password === password);
+    }
+
+    if (user) {
+      toast({
+        title: "✅ Login Successful",
+        description: `Welcome back ${user.fullName}!`,
+      });
+      // redirect to dashboard if needed
+    } else {
+      toast({
+        title: "❌ Login Failed",
+        description: "Invalid credentials. Check email/phone and password.",
+        variant: "destructive",
+      });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -75,6 +108,8 @@ const Login = () => {
                       type={loginType === 'email' ? 'email' : 'tel'}
                       placeholder={loginType === 'email' ? 'your@email.com' : '+1 (555) 123-4567'}
                       className="pl-10"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
                     />
                   </div>
                 </div>
@@ -90,6 +125,8 @@ const Login = () => {
                       type={showPassword ? 'text' : 'password'}
                       placeholder="••••••••"
                       className="pl-10 pr-10"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                     <Button
                       type="button"
@@ -120,7 +157,7 @@ const Login = () => {
             </CardContent>
 
             <CardFooter className="flex flex-col space-y-4">
-              <Button className="w-full" size="lg">
+              <Button className="w-full" size="lg" onClick={handleLogin}>
                 Sign In
               </Button>
               
