@@ -225,27 +225,39 @@ const UserDashboard = () => {
             </div>
           </TabsContent>
 
-          {/* Request Blood Tab */}
-          <TabsContent value="request" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Request Blood</CardTitle>
-                <CardDescription>
-                  Submit a blood request for yourself or someone in need
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-12">
-                  <Heart className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">Blood Request Form</h3>
-                  <p className="text-muted-foreground mb-6">
-                    This feature will allow users to submit blood requests with urgency levels
-                  </p>
-                  <Button>Create Blood Request</Button>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
+         {/* Request Blood Tab */}
+<TabsContent value="request" className="space-y-6">
+  <Card>
+    <CardHeader>
+      <CardTitle>Request Blood</CardTitle>
+      <CardDescription>
+        Submit a blood request for yourself or someone in need
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <div className="text-center py-12">
+        <Heart className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+        <h3 className="text-xl font-semibold mb-2">Blood Request Form</h3>
+        <p className="text-muted-foreground mb-6">
+          This feature will allow users to submit blood requests with urgency levels
+        </p>
+
+        {/* ✅ Redirect to Google Form in new tab */}
+        <Button
+          onClick={() =>
+            window.open(
+              "https://docs.google.com/forms/d/e/1FAIpQLSctxlaIWD8HPPlILLwTf4OPk6IZP8yoSTGideJl_eBDBLHA7w/viewform?usp=header",
+              "_blank"
+            )
+          }
+        >
+          Create Blood Request
+        </Button>
+      </div>
+    </CardContent>
+  </Card>
+</TabsContent>
+
 
           {/* Find Donors Tab */}
           <TabsContent value="donors" className="space-y-6">
