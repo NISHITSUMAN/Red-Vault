@@ -49,11 +49,11 @@ const Landing = () => {
     }
   ];
 
-  // Fake Ads
+  // Updated Fake Ads
   const fakeAds = [
-    "https://asthmabhawan.com/wp-content/uploads/2025/06/asthmabhawan.com-world-blood-donor-day-2025-be-someones-lifeline-today-world-blood-donor-day-2025-be-someones-lifeline-today.jpg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCJVwhelmjggkcHDh73C5ShyTVZq4pHchbFw&s",
-    "https://image.shutterstock.com/image-vector/world-blood-donor-day-donate-600nw-1989857141.jpg"
+    "https://fcdn.me/4ba/860/national-blood-service-give-blood-olympics-e0a1b852aab52939200b167e97.jpg?h=260",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC5qksZLD7QR5JNLW32tqNACy_1XKm5NOwpA&s",
+    "https://media.istockphoto.com/id/1770638460/vector/blood-donation-concepts-give-blood-save-lives-and-help-people-world-blood-donor-day-vector.jpg?s=612x612&w=0&k=20&c=7gq4SZQMOR5l54pFP79WB2NKWcgDPl1PFvAZZ8bHbps="
   ];
 
   const [currentAd, setCurrentAd] = useState(0);
@@ -76,7 +76,7 @@ const Landing = () => {
             key={index}
             src={ad}
             alt="Fake Ads"
-            className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${
+            className={`absolute inset-0 w-full h-full object-contain transition-all duration-1000 ${
               index === currentAd ? "opacity-100 scale-105 z-10" : "opacity-0 scale-100 z-0"
             }`}
           />
@@ -248,40 +248,4 @@ const Landing = () => {
             </div>
             
             <div>
-              <h4 className="font-semibold mb-3">Quick Links</h4>
-              <div className="space-y-2">
-                <Link to="/about" className="block text-muted-foreground hover:text-primary">About Us</Link>
-                <Link to="/contact" className="block text-muted-foreground hover:text-primary">Contact</Link>
-                <Link to="/privacy-policy" className="block text-muted-foreground hover:text-primary">Privacy Policy</Link>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-3">For Donors</h4>
-              <div className="space-y-2">
-                <Link to="/register" className="block text-muted-foreground hover:text-primary">Register</Link>
-                <Link to="/dashboard" className="block text-muted-foreground hover:text-primary">Dashboard</Link>
-                <Link to="/rewards" className="block text-muted-foreground hover:text-primary">Rewards</Link>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-3">Emergency</h4>
-              <div className="space-y-2">
-                <Link to="/request-blood" className="block text-muted-foreground hover:text-primary">Request Blood</Link>
-                <Link to="/dashboard?tab=find-donors" className="block text-muted-foreground hover:text-primary">Find Donors</Link>
-                <p className="text-muted-foreground">24/7 Hotline: 1-800-BLOOD</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="border-t mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 Red Vault. All rights reserved. Saving lives together.</p>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-};
-
-export default Landing;
+              <h4 className="font-semibold mb
