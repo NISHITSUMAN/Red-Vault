@@ -236,7 +236,7 @@ const Landing = () => {
               <h4 className="font-semibold mb-3">Emergency</h4>
               <div className="space-y-2">
                 <Link to="/request-blood" className="block text-muted-foreground hover:text-primary">Request Blood</Link>
-                <Link to="/find-donors" className="block text-muted-foreground hover:text-primary">Find Donors</Link>
+                <Link to="/dashboard?tab=find-donors" className="block text-muted-foreground hover:text-primary">Find Donors</Link>
                 <p className="text-muted-foreground">24/7 Hotline: 1-800-BLOOD</p>
               </div>
             </div>
