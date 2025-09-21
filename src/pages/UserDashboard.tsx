@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -27,6 +27,7 @@ import {
 const UserDashboard = () => {
   const [searchParams] = useSearchParams();
   const [activeTab, setActiveTab] = useState("profile");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const tab = searchParams.get("tab");
@@ -242,14 +243,9 @@ const UserDashboard = () => {
           This feature will allow users to submit blood requests with urgency levels
         </p>
 
-        {/* ✅ Redirect to Google Form in new tab */}
+        {/* Navigate to in-app RequestBlood page */}
         <Button
-          onClick={() =>
-            window.open(
-              "https://docs.google.com/forms/d/e/1FAIpQLSctxlaIWD8HPPlILLwTf4OPk6IZP8yoSTGideJl_eBDBLHA7w/viewform?usp=header",
-              "_blank"
-            )
-          }
+          onClick={() => navigate("/request-blood")}
         >
           Create Blood Request
         </Button>
