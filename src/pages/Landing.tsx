@@ -16,23 +16,6 @@ import {
   Globe,
   Star
 } from "lucide-react";
-import { useState, useEffect } from "react";
-
-// inside Landing component
-const fakeAds = [
-  "https://asthmabhawan.com/wp-content/uploads/2025/06/asthmabhawan.com-world-blood-donor-day-2025-be-someones-lifeline-today-world-blood-donor-day-2025-be-someones-lifeline-today.jpg",
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCJVwhelmjggkcHDh73C5ShyTVZq4pHchbFw&s",
-  "https://www.shutterstock.com/image-vector/world-blood-donor-day-donate-600nw-1989857141.jpg"
-];
-
-const [currentAd, setCurrentAd] = useState(0);
-
-useEffect(() => {
-  const interval = setInterval(() => {
-    setCurrentAd((prev) => (prev + 1) % fakeAds.length);
-  }, 2000); // 2 seconds
-  return () => clearInterval(interval);
-}, []);
 
 const Landing = () => {
   const stats = [
