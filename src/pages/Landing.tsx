@@ -219,7 +219,7 @@ const Landing = () => {
               <div className="space-y-2">
                 <Link to="/about" className="block text-muted-foreground hover:text-primary">About Us</Link>
                 <Link to="/contact" className="block text-muted-foreground hover:text-primary">Contact</Link>
-                <Link to="/privacy" className="block text-muted-foreground hover:text-primary">Privacy Policy</Link>
+                <Link to="/privacy-policy" className="block text-muted-foreground hover:text-primary">Privacy Policy</Link>
               </div>
             </div>
             
