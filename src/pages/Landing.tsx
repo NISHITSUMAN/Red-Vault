@@ -189,7 +189,7 @@ const Landing = () => {
                 Start Your Hero Journey
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
+            <Button size="lg" variant="outline" className="border-[#171717] text-[#171717] hover:bg-[#171717] hover:text-primary" asChild>
               <Link to="/emergency">
                 Emergency Request
               </Link>
