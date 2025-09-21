@@ -15,6 +15,10 @@ import RequestBlood from "./pages/RequestBlood";
 import Rewards from "./pages/Rewards";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
+import React from "react";
+import RaktveerChat from "./components/RaktveerChat";
+import HomePage from "./pages/Landing"; // Your main page component
+
 
 const queryClient = new QueryClient();
 
@@ -39,6 +43,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <RaktveerChat />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
